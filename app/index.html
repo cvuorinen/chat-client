@@ -24,7 +24,14 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="container" ng-view=""></div>
+    <div class="container">
+        <div ng-include data-src="'views/header.html'"></div>
+        <div ng-view=""></div>
+
+        <div class="footer">
+            <p>W3 Group Chat</p>
+        </div>
+    </div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -61,6 +68,7 @@
         <script src="scripts/controllers/topics.js"></script>
         <script src="scripts/services/message.js"></script>
         <script src="scripts/services/topic.js"></script>
+        <script src="scripts/controllers/navigation.js"></script>
         <!-- endbuild -->
 </body>
 </html>
