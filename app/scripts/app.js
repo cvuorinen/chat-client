@@ -13,6 +13,14 @@ angular
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
+      .when('/messages', {
+        templateUrl: 'views/messages.html',
+        controller: 'MessagesCtrl'
+      })
+      .when('/topics', {
+        templateUrl: 'views/topics.html',
+        controller: 'TopicsCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
