@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('chatClientApp')
-    .controller('MessagesCtrl', function ($scope, Message) {
+    .controller('MessagesCtrl', function ($scope, Message, User) {
         $scope.message = '';
-        $scope.user = {name: 'Carl'};
+        $scope.user = User.getUser();
         $scope.messages = Message.query();
 
         $scope.submit = function() {
