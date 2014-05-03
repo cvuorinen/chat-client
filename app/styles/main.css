@@ -81,3 +81,7 @@ body {
 ul.messages > li > .header {
     margin-bottom: 15px;
 }
+
+ul.messages > li > .header > p {
+    color: #666;
+}
