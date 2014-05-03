@@ -3,10 +3,15 @@
 angular.module('chatClientApp')
     .controller('UserCtrl', function ($scope, $location, User) {
         $scope.user = User.getUser();
+        $scope.submitted = false;
 
         $scope.setUser = function() {
-            User.setUser($scope.user);
+            $scope.submitted = true;
 
-            $location.path('/topics');
+            if ($scope.user.name) {
+                User.setUser($scope.user);
+
+                $location.path('/topics');
+            }
         };
     });
