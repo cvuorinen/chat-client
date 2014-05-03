@@ -77,3 +77,7 @@ body {
     border-bottom: 0;
   }
 }
+
+ul.messages > li > .header {
+    margin-bottom: 15px;
+}
