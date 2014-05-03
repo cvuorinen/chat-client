@@ -1,10 +1,6 @@
 'use strict';
 
 angular.module('chatClientApp')
-  .controller('TopicsCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+    .controller('TopicsCtrl', function ($scope, Topic) {
+        $scope.topics = Topic.query();
+    });

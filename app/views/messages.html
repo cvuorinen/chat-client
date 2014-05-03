@@ -1,1 +1,12 @@
-<p>This is the messages view.</p>
+<h2>Messages</h2>
+<ul class="list-unstyled messages">
+    <li class="" ng-repeat="message in messages">
+        <div class="header">
+            <div>
+                <strong>{{ message.user }}</strong>
+                <small class="text-muted">{{ message.time }}</small>
+            </div>
+            <p>{{ message.message }}</p>
+        </div>
+    </li>
+</ul>

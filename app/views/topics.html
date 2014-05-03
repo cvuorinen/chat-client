@@ -1,1 +1,9 @@
-<p>This is the topics view.</p>
+<h2>Topics</h2>
+<table class="table">
+    <tr ng-repeat="topic in topics">
+        <td>
+            <h3><a href="#">{{ topic.title }}</a></h3>
+            <div class="text-muted">{{ topic.description }}</div>
+        </td>
+    </tr>
+</table>
