@@ -3,16 +3,17 @@
 angular.module('chatClientApp')
     .controller('TopicFormCtrl', function ($scope, $route, $location, Topic) {
         if ($route.current.params.id == "new") {
-            $scope.topic = {};
+            $scope.topic = new Topic();
         } else {
-            $scope.topic = Topic.get($route.current.params.id);
+            $scope.topic = Topic.get({id: $route.current.params.id});
         }
 
-        $scope.submit = function() {
+        $scope.save = function() {
             if ($scope.topic.id) {
-                Topic.update($scope.topic);
+                //Topic.update({id: $scope.topic.id}, $scope.topic);
+                Topic.update({}, $scope.topic);
             } else {
-                Topic.post($scope.topic);
+                $scope.topic.$save();
             }
 
             $location.path('/topics');
