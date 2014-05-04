@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('chatClientApp')
-    .controller('TopicsCtrl', function ($scope, $location, Topic) {
+    .controller('TopicsCtrl', function ($scope, $location, Topic, SelectedTopic) {
         $scope.topics = Topic.query();
 
         $scope.delete = function(topic) {
@@ -10,6 +10,8 @@ angular.module('chatClientApp')
         }
 
         $scope.selectTopic = function (topic) {
+            SelectedTopic.setSelectedTopic(topic);
+
             $location.path('/messages');
         }
     });
