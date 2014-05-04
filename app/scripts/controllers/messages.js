@@ -2,22 +2,21 @@
 
 angular.module('chatClientApp')
     .controller('MessagesCtrl', function ($scope, Message, SelectedTopic, User) {
-        $scope.message = '';
+        $scope.message = new Message();
         $scope.user = User.getUser();
         $scope.topic = SelectedTopic.getSelectedTopic();
         $scope.messages = Message.query();
 
         $scope.delete = Message.delete;
 
-        $scope.submit = function() {
-            var message = {
-                user: $scope.user.name,
-                message: $scope.message,
-                time: new Date().toJSON()
-            };
+        $scope.save = function(message) {
+            $scope.message.user = $scope.user.name;
+            $scope.message._topic = {id: $scope.topic.id};
 
-            $scope.messages.push(message);
+            $scope.message.$save();
 
-            $scope.message = '';
+            $scope.messages.push($scope.message);
+
+            $scope.message = new Message();
         }
     });
