@@ -6,6 +6,8 @@ angular.module('chatClientApp')
         $scope.user = User.getUser();
         $scope.messages = Message.query();
 
+        $scope.delete = Message.delete;
+
         $scope.submit = function() {
             var message = {
                 user: $scope.user.name,
