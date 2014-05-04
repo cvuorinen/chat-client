@@ -3,6 +3,7 @@
     <li class="" ng-repeat="message in messages">
         <div class="header">
             <div>
+                <button type="button" class="close pull-right" ng-click="delete(message)">&times;</button>
                 <strong>{{ message.user }}</strong>
                 <small class="text-muted">{{ message.time }}</small>
             </div>
