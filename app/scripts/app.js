@@ -21,7 +21,7 @@ angular
                 templateUrl: 'views/topics.html',
                 controller: 'TopicsCtrl'
             })
-            .when('/topics/new', {
+            .when('/topics/:id', {
                 templateUrl: 'views/topic-form.html',
                 controller: 'TopicFormCtrl'
             })

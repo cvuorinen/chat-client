@@ -1,14 +1,19 @@
 'use strict';
 
 angular.module('chatClientApp')
-    .controller('TopicFormCtrl', function ($scope, $location, Topic) {
-        $scope.topic = {};
-        $scope.submitted = false;
+    .controller('TopicFormCtrl', function ($scope, $route, $location, Topic) {
+        if ($route.current.params.id == "new") {
+            $scope.topic = {};
+        } else {
+            $scope.topic = Topic.get($route.current.params.id);
+        }
 
         $scope.submit = function() {
-            $scope.submitted = true;
-
-            Topic.post($scope.topic);
+            if ($scope.topic.id) {
+                Topic.update($scope.topic);
+            } else {
+                Topic.post($scope.topic);
+            }
 
             $location.path('/topics');
         };

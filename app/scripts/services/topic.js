@@ -12,8 +12,23 @@ angular.module('chatClientApp')
             query: function() {
                 return topics;
             },
+            get: function(id) {
+                return _.find(topics, function(topic) {
+                    return topic.id == id;
+                });
+            },
             post: function(topic) {
                 topics.push(topic);
+            },
+            update: function(updatedTopic) {
+                var index = _.findIndex(topics, function(topic) {
+                    return topic.id == updatedTopic.id;
+                });
+
+                topics[index] = updatedTopic;
+            },
+            delete: function(topic) {
+                _.remove(topics, topic);
             }
         };
     });

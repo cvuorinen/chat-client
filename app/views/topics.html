@@ -6,7 +6,9 @@
     <tr ng-repeat="topic in topics">
         <td>
             <h3><a href="#">{{ topic.title }}</a></h3>
-            <div class="text-muted">{{ topic.description }}</div>
+            <p class="text-muted">{{ topic.description }}</p>
+            <a href="#/topics/{{ topic.id }}">Edit</a> -
+            <a href="" class="text-danger" ng-click="delete(topic)">Delete</a>
         </td>
     </tr>
 </table>
