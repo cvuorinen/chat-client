@@ -7,12 +7,16 @@ angular.module('chatClientApp')
 
         $scope.user = User.getUser();
         $scope.topic = SelectedTopic.getSelectedTopic();
-        $scope.message = newMessage();
-        $scope.messages = Message.query({}, function() {
-            // Start polling messages after successfully loading them first
-            pollMessages();
-            polling = true;
-        });
+
+
+        if ($scope.topic) {
+            $scope.message = newMessage();
+            $scope.messages = Message.query({}, function() {
+                // Start polling messages after successfully loading them first
+                pollMessages();
+                polling = true;
+            });
+        }
 
         var pollMessages = function() {
             $timeout(function() {

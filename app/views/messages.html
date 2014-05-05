@@ -1,4 +1,12 @@
 <h2>Messages</h2>
+
+<div ng-show="!topic.id">
+    <blockquote>
+        <p>No topic selected.</p>
+        <p>Please, select a <a href="#/topics">topic</a></p>
+    </blockquote>
+</div>
+
 <ul class="list-unstyled messages">
     <li class="" ng-repeat="message in messages">
         <div class="header">
@@ -12,7 +20,7 @@
     </li>
 </ul>
 
-<form class="form-horizontal" role="form" ng-submit="save(message)" ng-show="user.name">
+<form class="form-horizontal" role="form" ng-submit="save(message)" ng-show="message && user.name">
     <div class="form-group">
         <label for="message" class="col-sm-2 control-label">{{ user.name }}:</label>
         <div class="col-sm-10">
@@ -26,9 +34,9 @@
     </div>
 </form>
 
-<div class="clearfix" ng-show="!user.name">
-    <div class="col-sm-offset-2 col-sm-10">
+<div ng-show="!user.name">
+    <blockquote>
         <p>Username required to post messages.</p>
         <p>Set username on <a href="#/">Home page</a></p>
-    </div>
+    </blockquote>
 </div>
