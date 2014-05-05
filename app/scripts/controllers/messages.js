@@ -46,8 +46,9 @@ angular.module('chatClientApp')
         }
 
         $scope.delete = function(message) {
-            Message.delete(message);
-            _.remove($scope.messages, message);
+            Message.delete(message, function() {
+                _.remove($scope.messages, message);
+            });
         }
 
         $scope.createdMessage = function(message) {
