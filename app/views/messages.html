@@ -8,14 +8,20 @@
 </div>
 
 <ul class="list-unstyled messages">
-    <li class="" ng-repeat="message in messages">
+    <li ng-repeat="message in messages">
         <div class="header">
+            <div class="gravatar">
+                <img src="http://www.gravatar.com/avatar/{{ message.email | gravatar }}?size=60" class="img-circle">
+            </div>
+
             <div>
                 <button type="button" class="close pull-right" ng-show="createdMessage(message)" ng-click="delete(message)">&times;</button>
                 <strong>{{ message.user }}</strong>
                 <small class="text-muted" am-time-ago="message.time"></small>
             </div>
             <p>{{ message.message }}</p>
+
+            <p style="clear:both;"></p>
         </div>
     </li>
 </ul>

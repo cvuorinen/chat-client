@@ -85,3 +85,8 @@ ul.messages > li > .header {
 ul.messages > li > .header > p {
     color: #666;
 }
+
+ul.messages .gravatar {
+    float: left;
+    margin-right: 15px;
+}
