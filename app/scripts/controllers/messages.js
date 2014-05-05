@@ -63,6 +63,7 @@ angular.module('chatClientApp')
 
             if ($scope.user) {
                 message.user = $scope.user.name;
+                message.email = $scope.user.email;
             }
 
             return message;
