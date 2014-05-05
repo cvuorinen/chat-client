@@ -6,7 +6,8 @@ angular
         'ngResource',
         'ngSanitize',
         'ngRoute',
-        'angularMoment'
+        'angularMoment',
+        'angular-md5'
     ])
     .config(function ($routeProvider) {
         $routeProvider
