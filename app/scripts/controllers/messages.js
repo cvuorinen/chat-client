@@ -3,7 +3,7 @@
 angular.module('chatClientApp')
     .controller('MessagesCtrl', function ($scope, $rootScope, $timeout, Message, SelectedTopic, User, pollInterval) {
         var createdMessages = [];
-        var polling = false;
+        var pollTimeout;
 
         $scope.user = User.getUser();
         $scope.topic = SelectedTopic.getSelectedTopic();
@@ -12,28 +12,23 @@ angular.module('chatClientApp')
         if ($scope.topic) {
             $scope.message = newMessage();
             $scope.messages = Message.query({}, function() {
-                // Start polling messages after successfully loading them first
+                // Start polling messages after successfull initial load
                 pollMessages();
-                polling = true;
             });
         }
 
         var pollMessages = function() {
-            $timeout(function() {
-                console.log('pollMessages');
+            pollTimeout = $timeout(function() {
                 Message.query({}, function(messages) {
                     $scope.messages = messages;
-
-                    if (polling) {
-                        pollMessages();
-                    }
+                    pollMessages();
                 });
             }, pollInterval);
         };
 
         $rootScope.$on("$routeChangeStart", function() {
             // Stop polling when route changes
-            polling = false;
+            $timeout.cancel(pollTimeout);
         });
 
         $scope.save = function(message) {
@@ -61,13 +56,10 @@ angular.module('chatClientApp')
 
         function newMessage() {
             var message = new Message();
+            message._topic = {id: $scope.topic.id};
 
             if ($scope.user) {
                 message.user = $scope.user.name;
-            }
-
-            if ($scope.topic) {
-                message._topic = {id: $scope.topic.id};
             }
 
             return message;
