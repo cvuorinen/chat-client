@@ -28,4 +28,5 @@ angular
             .otherwise({
                 redirectTo: '/'
             });
-    });
+    })
+    .value('pollInterval', 3000);
