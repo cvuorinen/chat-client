@@ -1,11 +1,11 @@
 'use strict';
 
 angular.module('chatClientApp')
-    .controller('TopicFormCtrl', function ($scope, $route, $location, Topic) {
-        if ($route.current.params.id == "new") {
+    .controller('TopicFormCtrl', function ($scope, $routeParams, $location, Topic) {
+        if ($routeParams.id == "new") {
             $scope.topic = new Topic();
         } else {
-            $scope.topic = Topic.get({id: $route.current.params.id});
+            $scope.topic = Topic.get({id: $routeParams.id});
         }
 
         $scope.save = function() {
