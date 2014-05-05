@@ -3,7 +3,8 @@
 angular.module('chatClientApp')
     .service('User', function User($cookies) {
         var user = {
-            name: $cookies.userName
+            name: $cookies.userName,
+            email: $cookies.userEmail
         };
 
         return {
@@ -14,6 +15,7 @@ angular.module('chatClientApp')
                 user = newUser;
 
                 $cookies.userName = user.name;
+                $cookies.userEmail = user.email;
             }
         };
     });
