@@ -5,7 +5,7 @@
             <div>
                 <button type="button" class="close pull-right" ng-show="createdMessage(message)" ng-click="delete(message)">&times;</button>
                 <strong>{{ message.user }}</strong>
-                <small class="text-muted">{{ message.time }}</small>
+                <small class="text-muted" am-time-ago="message.time"></small>
             </div>
             <p>{{ message.message }}</p>
         </div>
