@@ -1,8 +1,9 @@
 'use strict';
 
 angular.module('chatClientApp')
-    .controller('MessagesCtrl', function ($scope, $timeout, Message, SelectedTopic, User, pollInterval) {
+    .controller('MessagesCtrl', function ($scope, $rootScope, $timeout, Message, SelectedTopic, User, pollInterval) {
         var createdMessages = [];
+        var polling = false;
 
         $scope.user = User.getUser();
         $scope.topic = SelectedTopic.getSelectedTopic();
@@ -10,6 +11,7 @@ angular.module('chatClientApp')
         $scope.messages = Message.query({}, function() {
             // Start polling messages after successfully loading them first
             pollMessages();
+            polling = true;
         });
 
         var pollMessages = function() {
@@ -17,10 +19,18 @@ angular.module('chatClientApp')
                 console.log('pollMessages');
                 Message.query({}, function(messages) {
                     $scope.messages = messages;
-                    pollMessages();
+
+                    if (polling) {
+                        pollMessages();
+                    }
                 });
             }, pollInterval);
         };
+
+        $rootScope.$on("$routeChangeStart", function() {
+            // Stop polling when route changes
+            polling = false;
+        });
 
         $scope.save = function(message) {
             if (!$scope.message.id) {
