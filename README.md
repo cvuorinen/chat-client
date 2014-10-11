@@ -1,4 +1,4 @@
 chat-client
 ===========
 
-AngularJS client for a custom chat API
+A demo AngularJS application that is a front-end client for a custom chat API
